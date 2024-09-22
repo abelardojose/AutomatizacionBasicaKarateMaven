@@ -6,6 +6,12 @@ public class UserGetRunner {
 
     @Karate.Test
     Karate userGet() {
-        return Karate.run().relativeTo(getClass());
+        /*Ejecucion de la carpeta users*/
+        return Karate.run("classpath:users").relativeTo(getClass());
+        /*Ejecucion de un feature desde la carpeta actual*/
+        //return Karate.run("../put/user-put.feature").relativeTo(getClass());
+        /*Ejecucion de un feature desde la carpeta actual*/
+        //return Karate.run().relativeTo(getClass());
     }
+
 }

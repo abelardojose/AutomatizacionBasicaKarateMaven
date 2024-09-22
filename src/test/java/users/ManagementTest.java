@@ -15,17 +15,18 @@ import java.util.List;
 public class ManagementTest {
 
     @Test
-    void testParallel(){
-      Results results =  Runner.path("classpath:users").outputCucumberJson(true).tags("~@ignore").parallel(4);
-      generateReport(results.getReportDir());
+    void testParallel() {
+        Results results = Runner.path("classpath:users").outputCucumberJson(true).tags("~@ignore").parallel(4);
+        generateReport(results.getReportDir());
     }
 
-    public static void generateReport(String karateOutputPath){
+    public static void generateReport(String karateOutputPath) {
         Collection<File> jsonFiles = FileUtils.listFiles(new File(karateOutputPath), new String[]{"json"}, true);
         List<String> jsonPaths = new ArrayList<>(jsonFiles.size());
         jsonFiles.forEach(file -> jsonPaths.add(file.getAbsolutePath()));
-        Configuration config = new Configuration(new File("build"), "curso_karate");
+        Configuration config = new Configuration(new File("target/karate-reports"), "curso_karate");
         ReportBuilder reportBuilder = new ReportBuilder(jsonPaths, config);
         reportBuilder.generateReports();
     }
+
 }
